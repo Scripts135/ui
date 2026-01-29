@@ -497,7 +497,7 @@ end
 
 -- // you can always connect this to luarmor/discord to get a real time but its pretty easy you lazy dev
 
-local expirationTime = LRM_SecondsLeft / 86400
+local expirationTime = 0
 
 createInstance("TextLabel", {
 	Name = "Expire",
