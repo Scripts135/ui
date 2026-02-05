@@ -1181,7 +1181,7 @@ function Library:CreateTab(name)
 		ZIndex = 1
 	})
 	
-	-
+	
 	local mainHolder = createInstance("ScrollingFrame", {
 		Name = "MainHolder",
 		Position = UDim2.new(0, 0, 0, 48),
