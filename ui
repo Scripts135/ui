@@ -1,4 +1,3 @@
-
 --// WATCH YOURSELF MADE TS FOR LAZY DEV -- NAMELESS
 
 
@@ -22,14 +21,14 @@ end
 
 local function makeDraggable(frame, dragHandle)
 	local dragging = false
-	local dragInput, mousePos, framePos
+	local dragInput, startPos, framePos
 
 	dragHandle = dragHandle or frame
 
 	dragHandle.InputBegan:Connect(function(input)
-		if input.UserInputType == Enum.UserInputType.MouseButton1 then
+		if input.UserInputType == Enum.UserInputType.MouseButton1 or input.UserInputType == Enum.UserInputType.Touch then
 			dragging = true
-			mousePos = input.Position
+			startPos = input.Position
 			framePos = frame.Position
 
 			input.Changed:Connect(function()
@@ -41,14 +40,14 @@ local function makeDraggable(frame, dragHandle)
 	end)
 
 	dragHandle.InputChanged:Connect(function(input)
-		if input.UserInputType == Enum.UserInputType.MouseMovement then
+		if input.UserInputType == Enum.UserInputType.MouseMovement or input.UserInputType == Enum.UserInputType.Touch then
 			dragInput = input
 		end
 	end)
 
 	UserInputService.InputChanged:Connect(function(input)
 		if input == dragInput and dragging then
-			local delta = input.Position - mousePos
+			local delta = input.Position - startPos
 			frame.Position = UDim2.new(
 				framePos.X.Scale,
 				framePos.X.Offset + delta.X,
@@ -1182,7 +1181,7 @@ function Library:CreateTab(name)
 		ZIndex = 1
 	})
 	
-	
+	-
 	local mainHolder = createInstance("ScrollingFrame", {
 		Name = "MainHolder",
 		Position = UDim2.new(0, 0, 0, 48),
