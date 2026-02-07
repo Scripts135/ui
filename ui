@@ -110,7 +110,7 @@ function Library:SaveConfig(configName)
 			makefolder(self.ConfigFolder)
 		end
 		local data = game:GetService("HttpService"):JSONEncode(self.ConfigData)
-		writefile(self.ConfigFolder .. "/" .. configName .. ".json", data)
+		writefile(self.ConfigFolder .. "/" .. configName .. ".neptune", data)
 	end)
 	
 	if success then
@@ -154,7 +154,7 @@ function Library:LoadConfig(configName)
 	end
 	
 	local success = pcall(function()
-		local data = readfile(self.ConfigFolder .. "/" .. configName .. ".json")
+		local data = readfile(self.ConfigFolder .. "/" .. configName .. ".neptune")
 		local decoded = game:GetService("HttpService"):JSONDecode(data)
 		
 		for key, value in pairs(decoded) do
@@ -206,7 +206,7 @@ function Library:DeleteConfig(configName)
 	end
 	
 	local success = pcall(function()
-		delfile(self.ConfigFolder .. "/" .. configName .. ".json")
+		delfile(self.ConfigFolder .. "/" .. configName .. ".neptune")
 	end)
 	
 	if success then
@@ -242,7 +242,7 @@ function Library:GetConfigs()
 		local configs = {}
 		local files = listfiles(self.ConfigFolder)
 		for _, file in ipairs(files) do
-			local name = file:gsub(self.ConfigFolder .. "\\", ""):gsub(self.ConfigFolder .. "/", ""):gsub(".json", "")
+			local name = file:gsub(self.ConfigFolder .. "\\", ""):gsub(self.ConfigFolder .. "/", ""):gsub(".neptune", "")
 			table.insert(configs, name)
 		end
 		return configs
