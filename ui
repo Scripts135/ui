@@ -497,7 +497,7 @@ end
 
 -- // you can always connect this to luarmor/discord to get a real time but its pretty easy you lazy dev
 
-local expirationTime = "5M 5D 15H 15S"
+local expirationTime = LRM_SecondsLeft / 86400
 
 createInstance("TextLabel", {
 	Name = "Expire",
@@ -506,7 +506,7 @@ createInstance("TextLabel", {
 	Parent = PlayerHolder,
 	BackgroundTransparency = 1,
 	Font = Enum.Font.Gotham,
-	Text = 'Expires: ' .. expirationTime,
+	Text = 'Expires: ' .. expirationTime .. ' days',
 	TextSize = 10,
 	TextXAlignment = Enum.TextXAlignment.Center,
 	TextColor3 = Color3.fromRGB(94, 94, 94),
